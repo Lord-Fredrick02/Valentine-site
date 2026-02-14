@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding-top: 100px;
+    background: linear-gradient(to bottom, #ffe6e6, #ffccd5);
+    overflow: hidden;
+  }
+  h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    color: #ff4d6d;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 50px;
+  }
+  button {
+    padding: 15px 40px;
+    font-size: 1.3rem;
+    margin: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(to right, #ff4d6d, #ff7a95);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+  button#no {
+    position: absolute;
+  }
+  /* Floating hearts animation */
+  .heart {
+    position: absolute;
+    color: #ff4d6d;
+    font-size: 24px;
+    animation: float 6s infinite;
+    opacity: 0.8;
+  }
+  @keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<h1>Will you be my Valentine?</h1>
+<button id="yes">Yes</button>
+<button id="no">No</button>
+<script>
+const noBtn = document.getElementById("no");
+// Make "No" button move
+noBtn.addEventListener("mouseover", () => {
+  const x = Math.random() * 80;
+  const y = Math.random() * 80;
+  noBtn.style.left = x + "%";
+  noBtn.style.top = y + "%";
+});
+// Yes button redirects to letter
+document.getElementById("yes").onclick = () => {
+  window.location.href = "letter.html";
+};
+// Create floating hearts
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.innerHTML = '❤️';
+  heart.style.left = Math.random() * 100 + '%';
+  heart.style.fontSize = (10 + Math.random() * 20) + 'px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 500);
+</script>
+</body>
+</html>
